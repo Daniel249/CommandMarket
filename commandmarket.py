@@ -22,13 +22,12 @@ class Category:
 
 class Command:
   continuar = True
-  Comandos = []
   def __init__(self, name:str, help:str) -> None:
     self.name = name
     self.help = help
     Command.Comandos.append(self)
 
-  def metodo(command):
+  def metodo(command:List[str]):
     if command[0] == "exit":
       print("La aplicacion se cerrara pronto. Gracias por hacer uso de esta")
       print("Atte. Daniel Morillo y Mateo Suarez")

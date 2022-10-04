@@ -5,7 +5,7 @@ def initialize() -> List[Command]:
     print("Initializing...")
     project = Command("project", "short description of project conception")
     catalog = Command("catalog", "show and browse types of products")
-    shop = Command("shop", "add product to cart")
+    shop = Command("shop", "add products to buying cart")
     checkout = Command("checkout", "prepare to buy list of products in cart")
     cashin = Command("cashin", "manage account credit and payment methods")
     exit = Command("exit", "close application")

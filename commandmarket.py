@@ -25,7 +25,6 @@ class Command:
   def __init__(self, name:str, help:str) -> None:
     self.name = name
     self.help = help
-    Command.Comandos.append(self)
 
   def metodo(command:List[str]):
     if command[0] == "exit":
@@ -48,5 +47,14 @@ class Command:
             for prod in sel.products:
               print("\t", prod.name, "\t", prod.price)
             print("\t El vendedor se encuentra en", sel.location)
+    elif command[0] == "shop":
+      print("add products to buying cart")
+      print("Not Implemented")
+    elif command[0] == "checkout":
+      print("prepare to buy list of products in cart")
+      print("Not Implemented")
+    elif command[0] == "cashin":
+      print("manage account credit and payment methods")
+      print("Not Implemented")
     else:
       print("Comando invalido, trate de nuevo")

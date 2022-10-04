@@ -9,7 +9,7 @@ while Command.continuar:
   command = input().split(" ", 1)
   if command[0] == "help":
     if len(command) == 1 or command[1] == "":
-      #print()
+      print("Los comandos son los siguientes:")
       for com in comandos:
         print("\t", com.name)
     else:

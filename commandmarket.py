@@ -30,6 +30,36 @@ class Category:
     self.sellers = sellers
     Category.Categories.append(self)
 
+class Kart:
+  """
+  Clase que contiene la lista de bienes para comprar
+  """
+  
+  def __init__(self) -> None:
+      self.listadecompra = []
+      self.total = 0
+  def addCompra(self, good:str, cantidad:int) -> bool:
+    for category in Category.Categories:
+      for seller in category.sellers:
+        for product in seller.products:
+          if product.name.lower() == good.lower():
+            for i in range(cantidad):
+              self.listadecompra.append(product)
+            total = product.price*cantidad
+            print(f"Se ha agregado {cantidad} unidades de {product.name} al carrito")
+            print(f"Por un valor de {total}")
+            self.total += total
+            print(f"El total de compra es de {self.total}")
+            return True
+    print(f"No se ha encontrado el producto: -{good}-")
+    print("Por favor trate de nuevo o use el catalogo")
+    return False
+  
+  def removerCompra(self, good:str) -> bool:
+    self.listadecompra = [value for value in self.listadecompra if value.name.lower() != good.lower()]
+   
+Kart.Carrito = Kart()
+
 class Command:
   """
   Clase que contiene la lista de comandos y sus funciones
@@ -42,8 +72,9 @@ class Command:
   def metodo(command:List[str]):
     if command[0] == "exit":
       print("La aplicacion se cerrara pronto. Gracias por hacer uso de esta")
+      time.sleep(1)
       print("\nAtte. Daniel Morillo y Mateo Suarez")
-      time.sleep(3)
+      time.sleep(2)
 
       Command.continuar = False
     elif command[0] == "project":
@@ -61,11 +92,36 @@ class Command:
         for sel in Seller.Sellers:
           if sel.name.lower() == command[1].lower():
             for prod in sel.products:
-              print("\t", prod.name, "\t", prod.price)
-            print("\t El vendedor se encuentra en", sel.location)
+              print(f"\t- {prod.name}:\t{prod.price}")
+            time.sleep(1)
+            print("\n\t El vendedor se encuentra en", sel.location)
     elif command[0] == "shop":
-      print("add products to buying cart")
-      print("Not Implemented")
+      if len(command) == 1:
+        print("Se mostraran los contenidos actuales de su carrito de compra")
+        time.sleep(1)
+        print(" ")
+        if len(Kart.Carrito.listadecompra) == 0:
+          print("El carrito se encuentra vacio en el momento")
+          print("Use el comando shop + nombre del producto + cantidad de producto")
+        else:
+          print(" ")
+          print("\tPrecio \tProducto")
+          print(" ")
+          for products in Kart.Carrito.listadecompra:
+            time.sleep(0.3)
+            print(f"\t{products.price}\t{products.name}")
+          time.sleep(0.4)
+          print(f"El total de compra es de {Kart.Carrito.total}")
+      elif len(command) == 2:
+        Kart.Carrito.addCompra(command[1], input(
+          "\tNo confirmo una cantidad de producto\n\tQue cantidad desearia?"
+        ))
+      else:
+        if command[2] == "0":
+          Kart.Carrito.removeCompra(command[1])
+        else:
+          Kart.Carrito.addCompra(command[1], command[2])
+
     elif command[0] == "checkout":
       print("prepare to buy list of products in cart")
       print("Not Implemented")

@@ -49,7 +49,7 @@ def initialize() -> List[Command]:
     categoriapostre = Category("Postres", [vendedorpostre1, vendedorpostre2, vendedorpostre3])
 
     articulo1 = Product("- Gorras Nike: ", 20000)
-    articulo2 = Product("- Gorras Adidas: ")
+    articulo2 = Product("- Gorras Adidas: ", 20000)
     articulo3 = Product("- Air Force 1: ", 150000)
     articulo4 = Product("- Jordan retro: ", 250000)
     articulo5 = Product("- Camiseta Oversize Nike: ", 25000)

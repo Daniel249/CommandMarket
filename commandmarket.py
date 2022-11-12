@@ -47,8 +47,10 @@ class Kart:
               self.listadecompra.append(product)
             total = product.price*cantidad
             print(f"Se ha agregado {cantidad} unidades de {product.name} al carrito")
+            time.sleep(0.3)
             print(f"Por un valor de {total}")
             self.total += total
+            time.sleep(0.3)
             print(f"El total de compra es de {self.total}")
             return True
     print(f"No se ha encontrado el producto: -{good}-")
@@ -71,12 +73,19 @@ class Command:
 
   def metodo(command:List[str]):
     if command[0] == "exit":
+      if len(Kart.Carrito.listadecompra) > 0:
+        respuesta = input(f"Esta seguro que quiere cerrar el programa?\nSu carrito contiene {len(Kart.Carrito.listadecompra)} item por un total de {Kart.Carrito.total}\n")
+        time.sleep(0.3)
+        if(respuesta.lower()!= "si"):
+          print("No se cerrara el programa. Continue")
+          return
+        
       print("La aplicacion se cerrara pronto. Gracias por hacer uso de esta")
       time.sleep(1)
       print("\nAtte. Daniel Morillo y Mateo Suarez")
       time.sleep(2)
-
       Command.continuar = False
+      #Command.continuar = False
     elif command[0] == "project":
       print("Este proyecto es realizado para la clase OOP de Jose D. Posada")
       print("Realizado por Daniel Morillo y Mateo Suarez")
@@ -104,23 +113,21 @@ class Command:
           print("El carrito se encuentra vacio en el momento")
           print("Use el comando shop + nombre del producto + cantidad de producto")
         else:
-          print(" ")
-          print("\tPrecio \tProducto")
-          print(" ")
+          print("\tPrecio \tProducto\n")
           for products in Kart.Carrito.listadecompra:
             time.sleep(0.3)
             print(f"\t{products.price}\t{products.name}")
           time.sleep(0.4)
-          print(f"El total de compra es de {Kart.Carrito.total}")
+          print(f"\nEl total de compra es de {Kart.Carrito.total}")
       elif len(command) == 2:
-        Kart.Carrito.addCompra(command[1], input(
-          "\tNo confirmo una cantidad de producto\n\tQue cantidad desearia?"
-        ))
+        Kart.Carrito.addCompra(command[1], int(input(
+          "\tNo confirmo una cantidad de producto\n\tQue cantidad desearia?\n"
+        )))
       else:
         if command[2] == "0":
           Kart.Carrito.removeCompra(command[1])
         else:
-          Kart.Carrito.addCompra(command[1], command[2])
+          Kart.Carrito.addCompra(command[1], int(command[2]))
 
     elif command[0] == "checkout":
       print("prepare to buy list of products in cart")

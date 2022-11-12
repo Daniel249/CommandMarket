@@ -59,7 +59,10 @@ class Kart:
   
   def removerCompra(self, good:str) -> bool:
     self.listadecompra = [value for value in self.listadecompra if value.name.lower() != good.lower()]
-   
+    print(f"Se removieron unidades de {good}")
+    time.sleep(0.3)
+    print("\nUse shop para mostrar el carrito")
+
 Kart.Carrito = Kart()
 
 class Command:
@@ -125,7 +128,7 @@ class Command:
         )))
       else:
         if command[2] == "0":
-          Kart.Carrito.removeCompra(command[1])
+          Kart.Carrito.removerCompra(command[1])
         else:
           Kart.Carrito.addCompra(command[1], int(command[2]))
 

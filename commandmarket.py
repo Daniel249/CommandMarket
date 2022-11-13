@@ -142,9 +142,25 @@ class Command:
 
     elif command[0] == "checkout":
       print("prepare to buy list of products in cart")
-      print("Not Implemented")
-    elif command[0] == "cashin":
-      print("manage account credit and payment methods")
-      print("Not Implemented")
+      time.sleep(1)
+      print("su carrito se ve actualmente asi:")
+      time.sleep(2)
+      print("\n\tPrecio \tProducto\n")
+      for products in Kart.Carrito.listadecompra:
+        time.sleep(0.3)
+        print(f"\t{products.price}\t{products.name}")
+      time.sleep(0.4)
+      print(f"\nEl total de compra es de {Kart.Carrito.total}")
+      respuesta = input("Desea continuar?\n")
+      if respuesta.lower() == "si":
+        time.sleep(1)
+        print("Se descontaron los creditos de su cuenta.")
+        time.sleep(2)
+        print("Gracias por su compra y siga apoyando el emprendimiento en Uninorte")
+      else:
+        time.sleep(1)
+        print("No se respondio afirmativamente")
+        time.sleep(2)
+        print("Siga mercando atraves de la aplicacion mientras lo desee")
     else:
-      print("Comando invalido, trate de nuevo")
+      print("Comando invalido, trate de nuevo o use -help-")

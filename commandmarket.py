@@ -90,8 +90,16 @@ class Command:
       Command.continuar = False
       #Command.continuar = False
     elif command[0] == "project":
+      time.sleep(0.5)
       print("Este proyecto es realizado para la clase OOP de Jose D. Posada")
-      print("Realizado por Daniel Morillo y Mateo Suarez")
+      time.sleep(1)
+      print("Realizado por Daniel Morillo y Mateo Suarez\n")
+      time.sleep(2)
+      print("El codigo se encuentra en el repositorio de Github y demostracion en YouTube")
+      time.sleep(2)
+      print("Gracias por hacer uso de este proyecto")
+      time.sleep(1)
+      print("Cualquier duda comuniquese con nosotros\n")
     elif command[0] == "catalog":
       if len(command) == 1 or command[1] == "":
         for cat in Category.Categories:

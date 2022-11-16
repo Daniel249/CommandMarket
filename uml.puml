@@ -1,0 +1,37 @@
+@startuml
+class Product {
+name:str
+price:int
+}
+class Seller {
+name:str
+location:str
+}
+class Category {
+name:str
+}
+class Kart {
+total:int
+addCompra()
+removeCompra()
+}
+class Command {
+name:str
+help:str
+metodo()
+}
+class User {
+name:str
+id:int
+realizarCompra()
+}
+
+Category --* "*" Seller
+Seller --* "*" Product
+Kart "1" --* "*" Product
+Command--> Product
+Command --> Seller
+Command --> Category
+Command --> User
+User "1" --* "1" Kart
+@enduml

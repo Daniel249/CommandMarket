@@ -80,6 +80,7 @@ class User:
     print("Se descontaron los creditos de su cuenta.")
     time.sleep(2)
     print("Gracias por su compra y siga apoyando el emprendimiento en Uninorte")
+    self.kart.listadecompra = []
 User.usuario = User("Usuario")
 
 
@@ -95,7 +96,7 @@ class Command:
   def metodo(command:List[str]):
     if command[0] == "exit":
       if len(User.usuario.kart.listadecompra) > 0:
-        respuesta = input(f"Esta seguro que quiere cerrar el programa?\nSu carrito contiene {len(Kart.Carrito.listadecompra)} item por un total de {Kart.Carrito.total}\n")
+        respuesta = input(f"Esta seguro que quiere cerrar el programa?\nSu carrito contiene {len(User.usuario.kart.listadecompra)} item por un total de {User.usuario.kart.total}\n")
         time.sleep(0.3)
         if(respuesta.lower()!= "si"):
           print("No se cerrara el programa. Continue")

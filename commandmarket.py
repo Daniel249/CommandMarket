@@ -1,5 +1,6 @@
 from typing import List, Set, Dict, Tuple, Optional
 import time
+import random
 
 class Product:
   """
@@ -29,6 +30,7 @@ class Category:
     self.name = name
     self.sellers = sellers
     Category.Categories.append(self)
+
 
 class Kart:
   """
@@ -63,7 +65,23 @@ class Kart:
     time.sleep(0.3)
     print("\nUse shop para mostrar el carrito")
 
-Kart.Carrito = Kart()
+#Kart.Carrito = Kart()
+
+class User:
+  """
+  Clase del usuario que contiene el carrito y demas informacion
+  """
+  def __init__(self,name) -> None:
+    self.kart = Kart() 
+    self.name = name
+    self.id = random.randint(10000, 99999)
+  def realizarCompra(self) -> None:
+    time.sleep(1)
+    print("Se descontaron los creditos de su cuenta.")
+    time.sleep(2)
+    print("Gracias por su compra y siga apoyando el emprendimiento en Uninorte")
+User.usuario = User("Usuario")
+
 
 class Command:
   """
@@ -76,7 +94,7 @@ class Command:
 
   def metodo(command:List[str]):
     if command[0] == "exit":
-      if len(Kart.Carrito.listadecompra) > 0:
+      if len(User.usuario.kart.listadecompra) > 0:
         respuesta = input(f"Esta seguro que quiere cerrar el programa?\nSu carrito contiene {len(Kart.Carrito.listadecompra)} item por un total de {Kart.Carrito.total}\n")
         time.sleep(0.3)
         if(respuesta.lower()!= "si"):
@@ -120,25 +138,25 @@ class Command:
         print("Se mostraran los contenidos actuales de su carrito de compra")
         time.sleep(1)
         print(" ")
-        if len(Kart.Carrito.listadecompra) == 0:
+        if len(User.usuario.kart.listadecompra) == 0:
           print("El carrito se encuentra vacio en el momento")
           print("Use el comando shop + nombre del producto + cantidad de producto")
         else:
           print("\tPrecio \tProducto\n")
-          for products in Kart.Carrito.listadecompra:
+          for products in User.usuario.kart.listadecompra:
             time.sleep(0.3)
             print(f"\t{products.price}\t{products.name}")
           time.sleep(0.4)
-          print(f"\nEl total de compra es de {Kart.Carrito.total}")
+          print(f"\nEl total de compra es de {User.usuario.kart.total}")
       elif len(command) == 2:
-        Kart.Carrito.addCompra(command[1], int(input(
+        User.usuario.kart.addCompra(command[1], int(input(
           "\tNo confirmo una cantidad de producto\n\tQue cantidad desearia?\n"
         )))
       else:
         if command[2] == "0":
-          Kart.Carrito.removerCompra(command[1])
+          User.usuario.kart.removerCompra(command[1])
         else:
-          Kart.Carrito.addCompra(command[1], int(command[2]))
+          User.usuario.kart.addCompra(command[1], int(command[2]))
 
     elif command[0] == "checkout":
       print("prepare to buy list of products in cart")
@@ -146,17 +164,14 @@ class Command:
       print("su carrito se ve actualmente asi:")
       time.sleep(2)
       print("\n\tPrecio \tProducto\n")
-      for products in Kart.Carrito.listadecompra:
+      for products in User.usuario.kart.listadecompra:
         time.sleep(0.3)
         print(f"\t{products.price}\t{products.name}")
       time.sleep(0.4)
-      print(f"\nEl total de compra es de {Kart.Carrito.total}")
+      print(f"\nEl total de compra es de {User.usuario.kart.total}")
       respuesta = input("Desea continuar?\n")
       if respuesta.lower() == "si":
-        time.sleep(1)
-        print("Se descontaron los creditos de su cuenta.")
-        time.sleep(2)
-        print("Gracias por su compra y siga apoyando el emprendimiento en Uninorte")
+        User.usuario.realizarCompra()
       else:
         time.sleep(1)
         print("No se respondio afirmativamente")

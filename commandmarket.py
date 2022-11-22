@@ -97,27 +97,19 @@ class Command:
     if command[0] == "exit":
       if len(User.usuario.kart.listadecompra) > 0:
         respuesta = input(f"Esta seguro que quiere cerrar el programa?\nSu carrito contiene {len(User.usuario.kart.listadecompra)} item por un total de {User.usuario.kart.total}\n")
-        time.sleep(0.3)
         if(respuesta.lower()!= "si"):
           print("No se cerrara el programa. Continue")
           return
         
       print("La aplicacion se cerrara pronto. Gracias por hacer uso de esta")
-      time.sleep(1)
       print("\nAtte. Daniel Morillo y Mateo Suarez")
-      time.sleep(2)
       Command.continuar = False
       #Command.continuar = False
     elif command[0] == "project":
-      time.sleep(0.5)
       print("Este proyecto es realizado para la clase OOP de Jose D. Posada")
-      time.sleep(1)
       print("Realizado por Daniel Morillo y Mateo Suarez\n")
-      time.sleep(2)
       print("El codigo se encuentra en el repositorio de Github y demostracion en YouTube")
-      time.sleep(2)
       print("Gracias por hacer uso de este proyecto")
-      time.sleep(1)
       print("Cualquier duda comuniquese con nosotros\n")
     elif command[0] == "catalog":
       if len(command) == 1 or command[1] == "":
@@ -132,12 +124,10 @@ class Command:
           if sel.name.lower() == command[1].lower():
             for prod in sel.products:
               print(f"\t- {prod.name}:\t{prod.price}")
-            time.sleep(1)
             print("\n\t El vendedor se encuentra en", sel.location)
     elif command[0] == "shop":
       if len(command) == 1:
         print("Se mostraran los contenidos actuales de su carrito de compra")
-        time.sleep(1)
         print(" ")
         if len(User.usuario.kart.listadecompra) == 0:
           print("El carrito se encuentra vacio en el momento")
@@ -145,9 +135,7 @@ class Command:
         else:
           print("\tPrecio \tProducto\n")
           for products in User.usuario.kart.listadecompra:
-            time.sleep(0.3)
             print(f"\t{products.price}\t{products.name}")
-          time.sleep(0.4)
           print(f"\nEl total de compra es de {User.usuario.kart.total}")
       elif len(command) == 2:
         User.usuario.kart.addCompra(command[1], int(input(
@@ -161,14 +149,10 @@ class Command:
 
     elif command[0] == "checkout":
       print("prepare to buy list of products in cart")
-      time.sleep(1)
       print("su carrito se ve actualmente asi:")
-      time.sleep(2)
       print("\n\tPrecio \tProducto\n")
       for products in User.usuario.kart.listadecompra:
-        time.sleep(0.3)
         print(f"\t{products.price}\t{products.name}")
-      time.sleep(0.4)
       print(f"\nEl total de compra es de {User.usuario.kart.total}")
       respuesta = input("Desea continuar?\n")
       if respuesta.lower() == "si":

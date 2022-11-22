@@ -158,9 +158,8 @@ class Command:
       if respuesta.lower() == "si":
         User.usuario.realizarCompra()
       else:
-        time.sleep(1)
+
         print("No se respondio afirmativamente")
-        time.sleep(2)
         print("Siga mercando atraves de la aplicacion mientras lo desee")
     else:
       print("Comando invalido, trate de nuevo o use -help-")

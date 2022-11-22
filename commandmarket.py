@@ -158,7 +158,6 @@ class Command:
       if respuesta.lower() == "si":
         User.usuario.realizarCompra()
       else:
-
         print("No se respondio afirmativamente")
         print("Siga mercando atraves de la aplicacion mientras lo desee")
     else:
